@@ -1,0 +1,15 @@
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\bin\Debug\VesselPlatform.dll
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\bin\Debug\VesselPlatform.pdb
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\bin\Debug\VesselPlatform.xml
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.vbproj.AssemblyReference.cache
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.Form1.resources
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.Resources.resources
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.vbproj.GenerateResource.cache
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.vbproj.CoreCompileInputs.cache
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.vbproj.CopyComplete
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.dll
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.xml
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\obj\Debug\VesselPlatform.pdb
+C:\Users\jiazheng100002\Desktop\trainnet\VesselPlatform\bin\Debug\VesselPlatform.dll.config
