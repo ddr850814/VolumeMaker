@@ -538,85 +538,152 @@ Public Class Form1
             If gridline.GetPropertyValue("ISPGGridData", "Axis").ToString = "X" Then
                 For Each oAreaSpace As AreaSpace In oFilter1.Apply
                     Dim EE As ISpaceParent = oAreaSpace.SpaceParent
-                    oPtLow = oAreaSpace.Range.Low
-                    oPtHigh = New Position(gridline.Origin.X, oAreaSpace.Range.High.Y, oAreaSpace.Range.High.Z)
-                    ' Create Space by 2 points
-                    Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase, oSpaceBase1 As SpaceBase
-                    Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
-                    ' Prepare SpaceInputs for creation
-                    oSpaceInputs(0) = New SpaceInputs
-                    oSpaceInputs(1) = New SpaceInputs
-                    oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
-                    oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
-                    oInputsColl.Add(oSpaceInputs(0))
-                    oInputsColl.Add(oSpaceInputs(1))
-                    oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
-                    SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
-
-                    ' associate the object with this space
-                    'oSpaceBase.AssociatedObject = Platform
-                    oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
-
-                    oPtLow = New Position(gridline.Origin.X, oAreaSpace.Range.Low.Y, oAreaSpace.Range.Low.Z)
-                    oPtHigh = oAreaSpace.Range.High
-
-                    ' Prepare SpaceInputs for creation
-                    oSpaceInputs(0) = New SpaceInputs
-                    oSpaceInputs(1) = New SpaceInputs
-                    oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
-                    oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
-                    oInputsColl.Clear()
-                    oInputsColl.Add(oSpaceInputs(0))
-                    oInputsColl.Add(oSpaceInputs(1))
-                    oSpaceBase1 = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
-                    SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
-
-                    ' associate the object with this space
-                    'oSpaceBase.AssociatedObject = Platform
-                    oSpaceBase1.SetUserDefinedName(oAreaSpace.Name)
+                   If oGridLine.Origin.X > oAreaSpace.Range.Low.X And oGridLine.Origin.X < oAreaSpace.Range.High.X Then
+                        oPtLow = oAreaSpace.Range.Low
+                        oPtHigh = New Position(oGridLine.Origin.X, oAreaSpace.Range.High.Y, oAreaSpace.Range.High.Z)
+                        ' Create Space by 2 points
+                        Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase, oSpaceBase1 As SpaceBase
+                        Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                            SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
+                        oPtLow = New Position(oGridLine.Origin.X, oAreaSpace.Range.Low.Y, oAreaSpace.Range.Low.Z)
+                        oPtHigh = oAreaSpace.Range.High
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Clear()
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase1 = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                            SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase1.SetUserDefinedName(oAreaSpace.Name)
+                    ElseIf oGridLine.Origin.X < oAreaSpace.Range.Low.X Then
+                        oPtLow = New Position(oGridLine.Origin.X, oAreaSpace.Range.Low.Y, oAreaSpace.Range.Low.Z)
+                        oPtHigh = oAreaSpace.Range.High
+                        ' Create Space by 2 points
+                        Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase
+                        Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                            SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
+                    ElseIf oGridLine.Origin.X > oAreaSpace.Range.High.X Then
+                        oPtLow = oAreaSpace.Range.Low
+                        oPtHigh = New Position(oGridLine.Origin.X, oAreaSpace.Range.High.Y, oAreaSpace.Range.High.Z)
+                        ' Create Space by 2 points
+                        Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase
+                        Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                            SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
+                    End If
                     oAreaSpace.Delete()
                     ClientServiceProvider.TransactionMgr.Commit("Place volume")
                 Next
             ElseIf gridline.GetPropertyValue("ISPGGridData", "Axis").ToString = "Y" Then
                 For Each oAreaSpace As AreaSpace In oFilter1.Apply
                     Dim EE As ISpaceParent = oAreaSpace.SpaceParent
-                    oPtLow = oAreaSpace.Range.Low
-                    oPtHigh = New Position(oAreaSpace.Range.High.X, gridline.Origin.Y, oAreaSpace.Range.High.Z)
-                    ' Create Space by 2 points
-                    Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase, oSpaceBase1 As SpaceBase
-                    Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
-
-                    ' Prepare SpaceInputs for creation
-                    oSpaceInputs(0) = New SpaceInputs
-                    oSpaceInputs(1) = New SpaceInputs
-                    oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
-                    oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
-                    oInputsColl.Add(oSpaceInputs(0))
-                    oInputsColl.Add(oSpaceInputs(1))
-                    oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                    If oGridLine.Origin.Y > oAreaSpace.Range.Low.Y And oGridLine.Origin.Y < oAreaSpace.Range.High.Y Then
+                        oPtLow = oAreaSpace.Range.Low
+                        oPtHigh = New Position(oAreaSpace.Range.High.X, oGridLine.Origin.Y, oAreaSpace.Range.High.Z)
+                        ' Create Space by 2 points
+                        Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase, oSpaceBase1 As SpaceBase
+                        Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                                SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
+                        oPtLow = New Position(oAreaSpace.Range.Low.X, oGridLine.Origin.Y, oAreaSpace.Range.Low.Z)
+                        oPtHigh = oAreaSpace.Range.High
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Clear()
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase1 = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                                SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase1.SetUserDefinedName(oAreaSpace.Name)
+                    ElseIf oGridLine.Origin.Y < oAreaSpace.Range.Low.Y Then
+                        oPtLow = New Position(oAreaSpace.Range.Low.X, oGridLine.Origin.Y, oAreaSpace.Range.Low.Z)
+                        oPtHigh = oAreaSpace.Range.High
+                        ' Create Space by 2 points
+                        Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase
+                        Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
                             SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
-
-                    ' associate the object with this space
-                    'oSpaceBase.AssociatedObject = Platform
-                    oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
-
-                    oPtLow = New Position(oAreaSpace.Range.Low.X, gridline.Origin.Y, oAreaSpace.Range.Low.Z)
-                    oPtHigh = oAreaSpace.Range.High
-
-                    ' Prepare SpaceInputs for creation
-                    oSpaceInputs(0) = New SpaceInputs
-                    oSpaceInputs(1) = New SpaceInputs
-                    oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
-                    oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
-                    oInputsColl.Clear()
-                    oInputsColl.Add(oSpaceInputs(0))
-                    oInputsColl.Add(oSpaceInputs(1))
-                    oSpaceBase1 = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
+                    ElseIf oGridLine.Origin.Y > oAreaSpace.Range.High.Y Then
+                        oPtLow = oAreaSpace.Range.Low
+                        oPtHigh = New Position(oAreaSpace.Range.High.X, oGridLine.Origin.Y, oAreaSpace.Range.High.Z)
+                        ' Create Space by 2 points
+                        Dim oCatBaseHelper As New CatalogBaseHelper, oSpaceBase As SpaceBase
+                        Dim oSpaceInputs(1) As SpaceInputs, oInputsColl As New Collection(Of SpaceInputs)
+                        ' Prepare SpaceInputs for creation
+                        oSpaceInputs(0) = New SpaceInputs
+                        oSpaceInputs(1) = New SpaceInputs
+                        oSpaceInputs(0).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtLow)
+                        oSpaceInputs(1).InputObject = New Point3d(ClientServiceProvider.WorkingSet.ActiveConnection, oPtHigh)
+                        oInputsColl.Add(oSpaceInputs(0))
+                        oInputsColl.Add(oSpaceInputs(1))
+                        oSpaceBase = New AreaSpace(oCatBaseHelper.GetPart("SPACE_DEF_SA01"),
                             SpaceConstructionType.SpaceBy2Points, EE, oInputsColl)
-
-                    ' associate the object with this space
-                    'oSpaceBase.AssociatedObject = Platform
-                    oSpaceBase1.SetUserDefinedName(oAreaSpace.Name)
+                        ' associate the object with this space
+                        'oSpaceBase.AssociatedObject = Platform
+                        oSpaceBase.SetUserDefinedName(oAreaSpace.Name)
+                    End If
                     oAreaSpace.Delete()
                     ClientServiceProvider.TransactionMgr.Commit("Place volume")
                 Next
